@@ -6,7 +6,7 @@ jobs:
   copilot-setup-steps:
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v6
+    - uses: actions/checkout@v4
     - run: |
         & ".\script\setup.ps1" "D:\a\_temp\ghcca-node"
       shell: pwsh
