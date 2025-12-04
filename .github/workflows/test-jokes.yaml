@@ -10,6 +10,8 @@ jobs:
   test-node-jokes:
     runs-on: ubuntu-latest
     name: Test Node.js Jokes Script
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       
@@ -33,6 +35,8 @@ jobs:
   test-powershell-jokes:
     runs-on: windows-latest
     name: Test PowerShell Jokes Script
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
       
