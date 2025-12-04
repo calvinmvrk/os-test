@@ -1,0 +1,24 @@
+name: "Test Node Setup"
+
+on: workflow_dispatch
+
+jobs:
+  test-setup:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4  # Use v4, not v6!
+      
+      - name: Run setup script
+        shell: pwsh
+        run: |
+          & ".\script\setup.ps1" "D:\a\_temp\ghcca-node"
+      
+      - name: Verify Node.js works
+        shell: pwsh
+        run: |
+          $nodePath = "D:\a\_temp\ghcca-node\node\node.exe"
+          if (-not (Test-Path $nodePath)) {
+            $nodePath = "D:\a\_temp\ghcca-node\node\bin\node.exe"
+          }
+          Write-Host "Found node at: $nodePath"
+          & $nodePath --version
