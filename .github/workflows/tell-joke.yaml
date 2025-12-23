@@ -1,0 +1,27 @@
+name: "Tell a Joke"
+
+on: 
+  workflow_dispatch:
+
+jobs:
+  tell-joke:
+    runs-on: windows-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        shell: pwsh
+        run: |
+          & ".\script\setup.ps1" "D:\a\_temp\ghcca-node"
+      
+      - name: Tell a joke
+        shell: pwsh
+        run: |
+          $nodePath = "D:\a\_temp\ghcca-node\node\node.exe"
+          if (-not (Test-Path $nodePath)) {
+            $nodePath = "D:\a\_temp\ghcca-node\node\bin\node.exe"
+          }
+          Write-Host "Using Node.js from: $nodePath"
+          & $nodePath joke.js
