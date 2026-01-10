@@ -1,0 +1,57 @@
+name: "Test Jokes"
+
+on:
+  push:
+    branches: [ main, copilot/** ]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test-node-jokes:
+    runs-on: ubuntu-latest
+    name: Test Node.js Jokes Script
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      
+      - name: Test - Show all jokes
+        run: node jokes.js
+      
+      - name: Test - Show random joke
+        run: node jokes.js --random
+      
+      - name: Test - Show specific joke
+        run: node jokes.js --number 3
+      
+      - name: Test - Show help
+        run: node jokes.js --help
+
+  test-powershell-jokes:
+    runs-on: windows-latest
+    name: Test PowerShell Jokes Script
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Test - Show all jokes
+        shell: pwsh
+        run: .\jokes.ps1
+      
+      - name: Test - Show random joke
+        shell: pwsh
+        run: .\jokes.ps1 -Random
+      
+      - name: Test - Show specific joke
+        shell: pwsh
+        run: .\jokes.ps1 -Number 3
+      
+      - name: Test - Show help
+        shell: pwsh
+        run: .\jokes.ps1 -Help
