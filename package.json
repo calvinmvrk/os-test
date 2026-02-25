@@ -1,0 +1,17 @@
+{
+  "name": "os-test",
+  "version": "1.0.0",
+  "description": "A simple joke-telling application",
+  "main": "jokes.js",
+  "scripts": {
+    "joke": "node jokes.js",
+    "jokes": "node jokes.js --all",
+    "test": "node test.js"
+  },
+  "keywords": ["jokes", "humor", "fun"],
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "tell-joke": "./jokes.js"
+  }
+}
